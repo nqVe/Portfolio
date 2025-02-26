@@ -23,13 +23,11 @@ screen.onkey(snake.go_down, "s")
 
 
 def snake_ate_food():
-    """Detect collision with food, add one pixel to snake body and adding scores"""
     if snake.head.distance(food) < 5:
         snake.add_pixel_after_eating()
         food.refresh()
         scoreboard.update_score()
 
-        # Create food in coordinates different from snake body
     for position in range(len(snake.full_body_list)):
         if food.distance(snake.full_body_list[position]) < 1:
             food.refresh()
@@ -53,8 +51,6 @@ while game_is_on:
     if user_wall == "y":
         if snake.head.xcor() < -295 or snake.head.xcor() > 295 or snake.head.ycor() < -295 or snake.head.ycor() > 295:
             snake.reset()
-            # game_is_on = False
-            # scoreboard.game_over_hit_wall()
             scoreboard.reset()
     elif user_wall == "n":
         if snake.head.xcor() < -290:
@@ -71,7 +67,5 @@ while game_is_on:
         if snake.head.distance(snake.full_body_list[position]) < 1:
             scoreboard.reset()
             snake.reset()
-            # game_is_on = False
-            # scoreboard.game_over_hit_snake()
 
 screen.exitonclick()
